@@ -1,7 +1,7 @@
 ---
 title: "Hotel bookings - factors"
-author: "YOU"
-date: "`r Sys.Date()`"
+author: "John Bennett"
+date: "Feb. 14, 2022"
 output: 
   html_document: 
     toc: yes
@@ -19,7 +19,24 @@ hotels <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesda
 
 ```
 
-First, knit the document and view the following visualisation. How are the months ordered? What would be a better order? Then, reorder the months on the x-axis (levels of `arrival_date_month`) in a way that makes more sense. You will want to use a function from the **forcats** package, see https://forcats.tidyverse.org/reference/index.html for inspiration and help.
+First, knit the document and view the following visualisation. How are the months ordered?
+The months are ordered alphabetically. 
+
+What would be a better order? 
+A better order would be the actual factual order of the months.
+I thought that the "reorder factor levels by hand" or "change factor orders" functions would be suited. I attempted those (see below) but neither worked. 
+
+```{r Months in order}
+f <- factor(c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"), levels = c("April", "August", "December", "February", "January", "July", "June", "March", "May", "November", "October", "September"))
+fct_relevel(f)
+```
+
+```{r Months in order2}
+x <- factor(c("April", "August", "December", "February", "January", "July", "June", "March", "May", "November", "October", "September"))
+fct_recode(x, January = "April", February = "August")
+```
+
+Then, reorder the months on the x-axis (levels of `arrival_date_month`) in a way that makes more sense. You will want to use a function from the **forcats** package, see https://forcats.tidyverse.org/reference/index.html for inspiration and help.
 
 **Stretch goal:** If you finish the above task before time is up, change the y-axis label so the values are shown with dollar signs, e.g. $80 instead of 80. You will want to use a function from the **scales** package, see https://scales.r-lib.org/reference/index.html for inspiration and help.
 
